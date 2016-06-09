@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+ <title>Contact Outlet Coding test</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="contactoutlet.js"></script>
+</head>
+<body>
+ <div ng-controller="myAppController">
+ <h1><center>Contact Outlet Coding test</center></h1>
+  <table class="table table-striped">
+   <tr>
+    <th style="cursor: pointer;" ng-click="orderBy('contacts[0].firstName')">Contact Name
+    <img src="icon/sort-icon.svg" style="width: 16px" />
+    </th>
+    <th style="cursor: pointer;" ng-click="orderBy('contacts[0].title')">Contact Title <img src="icon/sort-icon.svg" style="width: 16px" /></th>
+    <th style="cursor: pointer;" ng-click="orderBy('name')" >Outlet name <img src="icon/sort-icon.svg" style="width: 16px" /></th>
+    <th style="cursor: pointer;" ng-click="orderBy('contacts[0].profile')">Contact Profile <img src="icon/sort-icon.svg" style="width: 16px" /></th>
+   </tr>
+   <tr ng-repeat="outlet in finalData | orderBy : order :reverse| limitTo : perPage : offset">
+    <td>{{ outlet.contacts[0].firstName }} {{ outlet.contacts[0].lastName }}</td>
+    <td>{{ outlet.contacts[0].title }}</td>
+    <td>{{ outlet.name }}</td>
+    <td>{{ outlet.contacts[0].profile | limitTo : 60 }}</td>
+   </tr>
+  </table>   
+  <div class="article-footer clearfix">
+                    <ul class="pagination pull-left">
+                        <li ng-repeat="page in pages"><a href="javascript:void(0)" ng-click="changePage(page)" class="{{page.class}}">{{page.label}}</a></li>
+                    </ul>
+                </div>
+ </div>
+</body>
+</html>
